@@ -1,11 +1,7 @@
 const express = require("express");
 const router  = express.Router();
-
-const {
-  subscribe,
-  getAllSubscribers,
-  deleteSubscriber,
-} = require("../controller/newslettercontroller");
+// CORRECT
+const { subscribe, getAllSubscribers, deleteSubscriber } = require("../controllers/newsletterController");
 
 router.post("/",       subscribe);          // POST   /api/newsletter
 router.get("/",        getAllSubscribers);   // GET    /api/newsletter
