@@ -2,7 +2,7 @@
   "name": "offprint-backend-new",
   "version": "1.0.0",
   "description": "",
-  "main": " offprint.js",
+  "main": "offprint.js",
   "scripts": {
     "start": "node offprint.js",
     "test": "echo \"Error: no test specified\" && exit 1"
