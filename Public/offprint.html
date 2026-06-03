@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offprint Global Media Concepts</title>
+  <link rel="icon" type="image/jpeg" href="off.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c6a437;
+      --dark-green: #0c3b2e;
+      --green: #198754;
+      --black: #111;
+      --white: #fff;
+      --transition: 0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Poppins", sans-serif; background: #fff; }
+
+    /* ── NAV ── */
+    .nav {
+      padding: 0 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-image: url(tosin.jpeg);
+      background-size: cover;
+      background-position: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      min-height: 70px;
+      box-shadow: 0 3px 30px rgba(0,0,0,0.7);
+    }
+    /* dark overlay so brand always reads clearly */
+    .nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(6,20,14,0.85) 0%, rgba(6,20,14,0.55) 60%, rgba(6,20,14,0.75) 100%);
+      z-index: 0;
+    }
+    .nav > * { position: relative; z-index: 1; }
+
+    /* ── BRAND LOGO ── */
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 10px 0;
+    }
+    .logo a {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 3px;
+    }
+    .logo-main {
+      font-family: 'Bebas Neue', 'Cinzel', sans-serif;
+      font-size: 30px;
+      letter-spacing: 4px;
+      color: #f5d060;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 14px rgba(245, 208, 96, 0.8),
+        0 0 32px rgba(245, 208, 96, 0.35),
+        1px 2px 0px rgba(0,0,0,0.9);
+      transition: letter-spacing 0.4s ease, text-shadow 0.4s ease;
+      display: block;
+    }
+    .logo a:hover .logo-main {
+      letter-spacing: 6px;
+      text-shadow:
+        0 0 20px rgba(245, 208, 96, 1),
+        0 0 50px rgba(245, 208, 96, 0.6),
+        1px 2px 0px rgba(0,0,0,0.9);
+    }
+    .logo-tagline {
+      font-family: 'Poppins', sans-serif;
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(245, 208, 96, 0.65);
+      padding-left: 3px;
+      display: block;
+    }
+    /* gold underline accent */
+    .logo-accent {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: linear-gradient(90deg, #f5d060 0%, rgba(245,208,96,0.15) 100%);
+      margin-top: 4px;
+      border-radius: 2px;
+    }
+    .top-bar { display: flex; gap: 1rem; align-items: center; }
+    .address, .call-to-bar { font-size: 13px; color: var(--gold); font-weight: bold; }
+    .address img, .call-to-bar img { width: 18px; height: 18px; vertical-align: middle; }
+    nav ul { display: flex; flex-wrap: wrap; list-style: none; gap: 0; }
+    nav ul li a {
+      text-decoration: none; color: var(--gold); font-size: 15px;
+      display: block; padding: 10px 20px; position: relative; font-weight: bold;
+    }
+    nav ul li a::before, nav ul li a::after {
+      content: ''; position: absolute; left: 0; width: 100px; height: 2px;
+      background: gold; transform: scale(0); transition: 0.5s;
+    }
+    nav ul li a::before { top: 0; transform-origin: left; }
+    nav ul li a::after { bottom: 0; transform-origin: right; }
+    nav ul li a:hover::before, nav ul li a:hover::after { transform: scale(1); }
+    nav ul li a.active { border-bottom: 2px solid var(--gold); }
+
+    /* ── PAGE SECTIONS ── */
+    .page { display: none; padding-top: 70px; }
+    .page.active { display: block; }
+
+    /* ── HOME HERO ── */
+    .slideshow {
+      width: 100vw; height: 90vh;
+      background-size: cover; background-repeat: no-repeat; background-position: center;
+      animation: image-slide 20s ease-in-out infinite;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+    }
+    @keyframes image-slide {
+      0%   { background-image: url(fountain.jpeg); }
+      25%  { background-image: url(ads.jpeg); }
+      50%  { background-image: url(bag.jpeg); }
+      75%  { background-image: url(bag\ 2.jpeg); }
+      100% { background-image: url(gift\ bag.jpeg); }
+    }
+    .title { font-size: 42px; color: white; font-weight: bold; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+    .sub-title { font-size: 18px; color: gold; font-weight: bold; margin-bottom: 20px; }
+    .cta-btn {
+      padding: 14px 32px; background: var(--gold); color: var(--dark-green);
+      border: none; border-radius: 5px; font-size: 16px; font-weight: bold;
+      cursor: pointer; transition: var(--transition);
+    }
+    .cta-btn:hover { background: white; }
+
+    /* ── PORTFOLIO ── */
+    #container { padding: 3rem 2rem; }
+    #container h2 { text-align: center; font-size: 28px; margin-bottom: 2rem; }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 1200px; margin: 0 auto;
+    }
+    .feature-card { border-radius: 8px; overflow: hidden; border: 1px solid gold; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .feature-card img { width: 100%; height: 300px; object-fit: cover; }
+    .feature-card .content { padding: 1rem; }
+    .feature-card .content h3 { color: var(--gold); margin-bottom: 8px; }
+    .feature-card .content p { font-size: 14px; color: #333; margin-bottom: 10px; }
+    .btn {
+      display: inline-block; padding: 10px 20px; background: gold;
+      color: green; border-radius: 4px; text-decoration: none;
+      border: none; cursor: pointer; font-size: 14px; font-weight: bold;
+    }
+    .btn:hover { background: var(--dark-green); color: gold; }
+
+    /* ── HOME CONTACT CTA ── */
+    .container-contact {
+      width: 80%; max-width: 900px; background: #555;
+      padding: 10px; border-radius: 10px; margin: 2rem auto;
+    }
+    .Contact-session {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 40px 20px;
+    }
+    .Contact-session .content-design { flex: 1; padding-right: 20px; color: white; }
+    .Contact-session .content-design h2 { font-size: 1.5rem; margin-bottom: 10px; }
+    .Contact-session .content-design p { margin-bottom: 10px; font-size: 1rem; }
+    .whatsapp-btn {
+      display: inline-block; padding: 10px 20px; border-radius: 5px;
+      text-decoration: none; font-weight: bold; background: green; color: gold;
+    }
+    .img-fade img { width: 200px; border-radius: 10px; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter { text-align: center; padding: 30px 20px; background: #555; }
+    .newsletter h3 { margin-bottom: 15px; color: var(--gold); }
+    .newsletter input[type="email"] {
+      padding: 10px; width: 250px; border: 1px solid gold;
+      border-radius: 5px; margin-right: 10px;
+    }
+    .newsletter button {
+      padding: 10px 20px; background: green; color: gold;
+      border: none; border-radius: 5px; cursor: pointer;
+    }
+    .newsletter button:hover { background: var(--gold); color: green; }
+    #newsletterMessage { margin-top: 10px; font-weight: bold; }
+
+    /* ── HOME FORM ── */
+    .container-form {
+      width: 80%; max-width: 1000px; background: white;
+      padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px; margin: 2rem auto;
+    }
+    .container-form h2 { text-align: center; font-size: 24px; margin-bottom: 10px; }
+    .container-form > p { text-align: center; color: var(--gold); margin-bottom: 20px; }
+    .form-row { display: flex; gap: 20px; margin-bottom: 15px; }
+    .form-group { flex: 1; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--gold); }
+    input[type="text"], input[type="email"], input[type="tel"], textarea {
+      width: 100%; padding: 10px; border: 2px solid gold;
+      border-radius: 4px; font-size: 14px;
+    }
+    textarea { resize: vertical; }
+    .form-status { margin-top: 10px; font-weight: bold; font-size: 14px; }
+    .form-status.success { color: green; }
+    .form-status.error { color: red; }
+
+    /* ── ABOUT PAGE ── */
+    .about-us {
+      background: var(--dark-green); color: var(--gold);
+      text-align: center; padding: 3rem 2rem;
+    }
+    .about-us h2 { font-size: 2rem; }
+    .about-content {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 3rem 2rem; max-width: 1100px; margin: 0 auto;
+    }
+    .about-content img { width: 350px; border-radius: 10px; object-fit: cover; }
+    .about-content strong { font-size: 15px; line-height: 1.8; color: #333; display: block; }
+    .grid-container { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+    .grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    .box {
+      background: var(--dark-green); color: white;
+      padding: 2rem; border-radius: 10px; border-left: 4px solid var(--gold);
+    }
+    .box h2 { color: var(--gold); margin-bottom: 10px; }
+
+    /* ── CONTACT PAGE ── */
+    .contact-hero {
+      background: var(--dark-green); padding: 3rem 2rem; text-align: center;
+    }
+    .contact-hero h2 { color: var(--gold); font-size: 1.8rem; }
+    .containers {
+      display: flex; gap: 2rem; padding: 3rem 2rem;
+      max-width: 1100px; margin: 0 auto; align-items: flex-start;
+    }
+    .Contact-infos { flex: 1; }
+    .Contact-infos h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1.3rem; }
+    .Contact-infos p { margin-bottom: 8px; color: #333; font-size: 14px; }
+    .form-containers { flex: 2; }
+    .form-groups { display: flex; gap: 10px; margin-bottom: 15px; }
+    .form-groups input, .form-groups textarea {
+      flex: 1; padding: 10px; border: 2px solid gold;
+      border-radius: 5px; font-size: 14px; font-family: inherit;
+    }
+
+    /* ── GALLERY PAGE ── */
+    .gallery-title {
+      text-align: center; padding: 2rem;
+      background: var(--dark-green); color: var(--gold);
+    }
+    .gallery {
+      position: relative; width: 300px; height: 200px;
+      margin: 80px auto 150px; transform-style: preserve-3d;
+      animation: galleryRotate 30s infinite linear;
+    }
+    .gallery:hover { animation-play-state: paused; }
+    .gallery span {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transform: rotateY(calc(var(--i) * 25.7deg)) translateZ(400px);
+      border-radius: 10px;
+      -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0000004d);
+    }
+    .gallery span img {
+      position: absolute; width: 100%; height: 100%;
+      top: 0; left: 0; object-fit: cover; border-radius: 10px;
+    }
+    @keyframes galleryRotate {
+      0%   { transform: perspective(1000px) rotateY(0deg); }
+      100% { transform: perspective(1000px) rotateY(360deg); }
+    }
+
+    /* ── CONTACT INFO CARDS (shared) ── */
+    .Contact-info {
+      display: flex; justify-content: space-around; align-items: center;
+      padding: 50px 20px; background-image: url(tosin.jpeg);
+      background-size: cover; margin-top: 2rem; gap: 20px;
+    }
+    .card {
+      color: gold; background: black; padding: 20px;
+      text-align: center; border-radius: 10px; width: 28%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .card img { width: 40px; margin-bottom: 10px; }
+    .card h3 { margin-bottom: 10px; }
+
+    /* ── BANNER & FOOTER ── */
+    .banner h2 {
+      background: black; color: gold;
+      text-align: center; padding: 20px; font-size: 1rem;
+    }
+    .footer {
+      background: black; padding: 20px; text-align: center;
+    }
+    .footer h2 { font-size: 18px; color: gold; margin-bottom: 5px; }
+    .footer p { color: gold; font-size: 12px; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 10px; }
+    .footer-links a { color: var(--gold); text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    .animate { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    .animate.active { opacity: 1; transform: translateY(0); }
+    .fadeInLeft { transform: translateX(-40px); }
+    .fadeInRight { transform: translateX(40px); }
+    .fadeInUp { transform: translateY(40px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .top-bar, .address, .call-to-bar { display: none; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-content { flex-direction: column; }
+      .about-content img { width: 100%; }
+      .containers { flex-direction: column; }
+      .logo-main { font-size: 24px; letter-spacing: 3px; }
+    }
+    @media (max-width: 768px) {
+      .nav { flex-direction: column; align-items: flex-start; padding: 8px 1rem; }
+      .logo-main { font-size: 20px; letter-spacing: 2px; }
+      .logo-tagline { font-size: 7px; letter-spacing: 3px; }
+      .title { font-size: 26px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+      .Contact-info { flex-direction: column; }
+      .card { width: 90%; }
+      .grid { grid-template-columns: 1fr; }
+      .Contact-session { flex-direction: column; }
+      .img-fade { display: none; }
+      .form-groups { flex-direction: column; }
+      .about-content { padding: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .logo-main { font-size: 16px; letter-spacing: 1.5px; }
+      .logo-tagline { display: none; }
+      nav ul li a { padding: 6px 10px; font-size: 13px; }
+      .container-form, .container-contact { width: 95%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  NAV                                       -->
+<!-- ══════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="logo">
+    <a href="#home" onclick="showPage('home')">
+      <span class="logo-main">Offprint Global Media Concepts</span>
+      <span class="logo-tagline">Design · Print · Brand · Deliver</span>
+    </a>
+    <span class="logo-accent"></span>
+  </div>
+  <div class="top-bar">
+    <div class="address">
+      <p><img src="address.jpg"> 6/11, Awe Crescent, Onipanu, Shomolu, Lagos</p>
+    </div>
+    <div class="call-to-bar">
+      <p><img src="call.jpg"> +234708455540, +2347010124858</p>
+      <p><img src="email.jpg"> malakai4realxyzdone@gmail.com</p>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#home"    onclick="showPage('home')"    id="nav-home">Home</a></li>
+    <li><a href="#about"   onclick="showPage('about')"   id="nav-about">About</a></li>
+    <li><a href="#contact" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a href="#gallery" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: HOME                                -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="slideshow">
+      <h1 class="title">Welcome to Offprint Global Media Concepts</h1>
+      <p class="sub-title">Making your vision reality</p>
+      <button class="cta-btn" onclick="showPage('contact')">Get Started</button>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="container">
+    <h2 class="feature-title">Portfolio</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="fountain.jpeg" alt="Branding">
+        <div class="content">
+          <h3>Branding</h3>
+          <p>Our service is branding which is divided into various creative services.</p>
+          <button class="btn" onclick="showPage('contact')">Get Started</button>
+        </div>
+      </div>
+      <div class="feature-card">
+        <img src="real estate.jpg" alt="Real Estate">
+        <div class="content">
+          <h3>Estate Management & Consultancy</h3>
+          <p>Maximize returns on your property investment with our professional services.</p>
+          <button class="btn" onclick="showPage('contact')">Get Started</button>
+        </div>
+      </div>
+      <div class="feature-card">
+        <img src="ads.jpeg" alt="Printing">
+        <div class="content">
+          <h3>Printing & Packaging</h3>
+          <p>Packaging ensuring protection, presentation and transportation of goods.</p>
+          <button class="btn" onclick="showPage('contact')">Get Started</button>
+        </div>
+      </div>
+      <div class="feature-card">
+        <img src="book branding.jpeg" alt="Book Publishing">
+        <div class="content">
+          <h3>Book Publishing</h3>
+          <p>Let us help you publish and print high quality books with worldwide reach.</p>
+          <button class="btn" onclick="showPage('contact')">Get Started</button>
+        </div>
+      </div>
+      <div class="feature-card">
+        <img src="gift bag.jpeg" alt="Gift Items">
+        <div class="content">
+          <h3>Gift Items</h3>
+          <p>Let us help you with your branded gift items and custom packaging.</p>
+          <button class="btn" onclick="showPage('contact')">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Contact Form -->
+  <div class="container-form animate fadeInUp">
+    <div class="form-wrapper">
+      <h2>Do you need any of our services?</h2>
+      <p>Kindly fill the form below so we can understand how to serve you</p>
+      <form id="home-contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Your Email">
+          </div>
+          <div class="form-group">
+            <label for="phoneNo">Phone No</label>
+            <input type="tel" id="phoneNo" name="phone" placeholder="Phone No">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us about the service you need..."></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+        <p class="form-status" id="home-form-status"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="container-contact">
+    <div class="Contact-session">
+      <div class="content-design animate fadeInLeft">
+        <h2>Contact Us</h2>
+        <p>Ready to Experience Offprint Global Media Concept?</p>
+        <p>Contact us to discuss your special needs — let us tailor a solution for your brand.</p>
+        <a href="https://wa.me/+2347084855540" target="_blank" class="whatsapp-btn">Let's chat on WhatsApp</a>
+      </div>
+      <div class="animate fadeInRight">
+        <div class="img-fade">
+          <img src="off.jpeg" alt="Offprint">
+        </div>
+      </div>
+    </div>
+    <!-- Newsletter -->
+    <div class="newsletter">
+      <div class="animate fadeInUp">
+        <h3>Subscribe to Our News</h3>
+        <form id="newsletter-form">
+          <input type="email" id="newsletterinput" placeholder="Enter your email">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p id="newsletterMessage"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Cards -->
+  <section class="Contact-info">
+    <div class="card"><img src="call.jpg" alt="phone"><h3>Call Us Now</h3><p>+234708455540</p><p>+2347010124858</p></div>
+    <div class="card"><img src="address.jpg" alt="address"><h3>Visit Us Here</h3><p>6/11, Awe Crescent, Onipanu, Shomolu, Lagos</p></div>
+    <div class="card"><img src="email.jpg" alt="email"><h3>Email Us Now</h3><p>malakai4realxyzdone@gmail.com</p></div>
+  </section>
+  <section class="banner">
+    <h2>Offprint Global Media Concept — Your Trusted Partner in the Graphics World.</h2>
+  </section>
+  <footer class="footer">
+    <h2>Copyright &copy; 2026 Offprint Media</h2>
+    <p>Site Developed by Mabs Technologies</p>
+    <div class="footer-links">
+      <a href="#home" onclick="showPage('home')">Home</a>
+      <a href="#about" onclick="showPage('about')">About</a>
+      <a href="#contact" onclick="showPage('contact')">Contact</a>
+      <a href="#gallery" onclick="showPage('gallery')">Gallery</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: ABOUT                               -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="about-us">
+    <h2>Get To Know Offprint Global Media Concepts</h2>
+  </div>
+  <div class="about-content">
+    <img src="download.jpg" alt="About Offprint">
+    <strong>
+      We craft brands that make your business shine! 🌟 Whether you're a startup, SME, or established enterprise,
+      our expert team creates tailored solutions to elevate your brand identity and drive growth.<br><br>
+      From logos to full brand strategies, we bring your vision to life with creativity and precision.
+      Let us handle the design, so you can focus on what you do best — running your business 💼✨.<br><br>
+      No more bland visuals, confusing messaging, or missed opportunities. We'll help you stand out in a
+      crowded market and connect with your audience like never before 🚀.<br><br>
+      Ready to level up your brand? 💡
+    </strong>
+  </div>
+  <div class="grid-container">
+    <div class="grid">
+      <div class="box animate fadeInLeft"><h2>Our Vision</h2><p>To be the leading graphics design service provider in Nigeria.</p></div>
+      <div class="box animate fadeInRight"><h2>Our Mission</h2><p>To provide our clients with peace of mind, creativity and team availability.</p></div>
+      <div class="box animate fadeInLeft"><h2>Our Value</h2><p>Communication, dedication and customer focus are core values that encompass every activity we perform.</p></div>
+      <div class="box animate fadeInRight"><h2>Our Ethics</h2><p>Commitment to exceptional customer service while working tirelessly to continually produce results.</p></div>
+    </div>
+  </div>
+  <section class="Contact-info">
+    <div class="card"><img src="call.jpg" alt="phone"><h3>Call Us Now</h3><p>+234708455540</p><p>+2347010124858</p></div>
+    <div class="card"><img src="address.jpg" alt="address"><h3>Visit Us Here</h3><p>6/11, Awe Crescent, Onipanu, Shomolu, Lagos</p></div>
+    <div class="card"><img src="email.jpg" alt="email"><h3>Email Us Now</h3><p>malakai4realxyzdone@gmail.com</p></div>
+  </section>
+  <footer class="footer">
+    <h2>Copyright &copy; 2026 Offprint Media</h2>
+    <p>Site Developed by Mabs Technologies</p>
+    <div class="footer-links">
+      <a href="#home" onclick="showPage('home')">Home</a>
+      <a href="#about" onclick="showPage('about')">About</a>
+      <a href="#contact" onclick="showPage('contact')">Contact</a>
+      <a href="#gallery" onclick="showPage('gallery')">Gallery</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: CONTACT                             -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-hero">
+    <h2 id="contact-heading">Effortless branding, that's what we do</h2>
+  </div>
+  <div class="containers">
+    <div class="Contact-infos">
+      <h3>Contact Us Today!</h3>
+      <p>📞 Phone: +234708455540, +2347010124858</p>
+      <p>💬 WhatsApp: +234708455540</p>
+      <p>📧 Email: malakai4realxyzdone@gmail.com</p>
+      <p>📍 6/11 Awe Crescent, Onipanu, Shomolu, Lagos</p>
+      <br>
+      <a href="https://wa.me/+2347084855540" target="_blank" class="whatsapp-btn">Chat on WhatsApp</a>
+    </div>
+    <div class="form-containers">
+      <form id="contact-page-form">
+        <div class="form-groups">
+          <input type="text" id="contact-fullName" placeholder="Your Full Name *">
+          <input type="email" id="contact-email" placeholder="Your Email *">
+        </div>
+        <div class="form-groups">
+          <input type="tel" id="contact-phoneNo" placeholder="Your Phone Number">
+        </div>
+        <div class="form-groups">
+          <textarea id="contact-message" placeholder="What kind of service are you looking for? *" rows="5"></textarea>
+        </div>
+        <button class="btn" type="submit">Send Message</button>
+        <p class="form-status" id="contact-form-status"></p>
+      </form>
+    </div>
+  </div>
+  <section class="Contact-info">
+    <div class="card"><img src="call.jpg" alt="phone"><h3>Call Us Now</h3><p>+234708455540</p><p>+2347010124858</p></div>
+    <div class="card"><img src="address.jpg" alt="address"><h3>Visit Us Here</h3><p>6/11, Awe Crescent, Onipanu, Shomolu, Lagos</p></div>
+    <div class="card"><img src="email.jpg" alt="email"><h3>Email Us Now</h3><p>malakai4realxyzdone@gmail.com</p></div>
+  </section>
+  <footer class="footer">
+    <h2>Copyright &copy; 2026 Offprint Media</h2>
+    <p>Site Developed by Mabs Technologies</p>
+    <div class="footer-links">
+      <a href="#home" onclick="showPage('home')">Home</a>
+      <a href="#about" onclick="showPage('about')">About</a>
+      <a href="#contact" onclick="showPage('contact')">Contact</a>
+      <a href="#gallery" onclick="showPage('gallery')">Gallery</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: GALLERY                             -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-gallery" class="page">
+  <div class="gallery-title">
+    <h2>Our Work Gallery</h2>
+    <p style="color:white; margin-top:8px;">Hover to pause · Drag to explore</p>
+  </div>
+  <div class="gallery">
+    <span style="--i:1"><img src="clock frame.jpeg" alt="Clock Frame"></span>
+    <span style="--i:3"><img src="gift bag.jpeg" alt="Gift Bag"></span>
+    <span style="--i:5"><img src="sign post.jpeg" alt="Sign Post"></span>
+    <span style="--i:7"><img src="biro.jpeg" alt="Branded Biro"></span>
+    <span style="--i:9"><img src="clothing branding 1.jpeg" alt="Clothing Branding"></span>
+    <span style="--i:11"><img src="bag 2.jpeg" alt="Bag"></span>
+    <span style="--i:13"><img src="book branding.jpeg" alt="Book Branding"></span>
+    <span style="--i:15"><img src="role banner.jpeg" alt="Roll Banner"></span>
+    <span style="--i:17"><img src="menu list.jpeg" alt="Menu List"></span>
+  </div>
+  <section class="Contact-info">
+    <div class="card"><img src="call.jpg" alt="phone"><h3>Call Us Now</h3><p>+234708455540</p><p>+2347010124858</p></div>
+    <div class="card"><img src="address.jpg" alt="address"><h3>Visit Us Here</h3><p>6/11, Awe Crescent, Onipanu, Shomolu, Lagos</p></div>
+    <div class="card"><img src="email.jpg" alt="email"><h3>Email Us Now</h3><p>malakai4realxyzdone@gmail.com</p></div>
+  </section>
+  <footer class="footer">
+    <h2>Copyright &copy; 2026 Offprint Media</h2>
+    <p>Site Developed by Mabs Technologies</p>
+    <div class="footer-links">
+      <a href="#home" onclick="showPage('home')">Home</a>
+      <a href="#about" onclick="showPage('about')">About</a>
+      <a href="#contact" onclick="showPage('contact')">Contact</a>
+      <a href="#gallery" onclick="showPage('gallery')">Gallery</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  JAVASCRIPT                                -->
+<!-- ══════════════════════════════════════════ -->
+<script>
+  // ── Page Router ──────────────────────────────
+  function showPage(pageName) {
+    // Hide all pages
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    // Remove active from all nav links
+    document.querySelectorAll("nav ul li a").forEach(a => a.classList.remove("active"));
+    // Show target page
+    document.getElementById("page-" + pageName).classList.add("active");
+    // Mark nav link active
+    const navLink = document.getElementById("nav-" + pageName);
+    if (navLink) navLink.classList.add("active");
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Re-init scroll animations for new page
+    initScrollAnimations();
+  }
+
+  // Handle browser back/forward and hash links
+  window.addEventListener("hashchange", () => {
+    const hash = window.location.hash.replace("#", "") || "home";
+    const valid = ["home", "about", "contact", "gallery"];
+    if (valid.includes(hash)) showPage(hash);
+  });
+
+  // ── On Load ──────────────────────────────────
+  document.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash.replace("#", "") || "home";
+    const valid = ["home", "about", "contact", "gallery"];
+    showPage(valid.includes(hash) ? hash : "home");
+
+    initHeroTexts();
+    initScrollAnimations();
+    initHomeForm();
+    initContactForm();
+    initNewsletter();
+    initContactHeading();
+  });
+
+  // ── Hero text rotation ────────────────────────
+  function initHeroTexts() {
+    const texts = [
+      { title: "Welcome to Offprint Global Media Concepts", subtitle: "Making your vision reality" },
+      { title: "Creative Branding & Printing", subtitle: "We build brands that stand out" },
+      { title: "Your Trusted Media Partner", subtitle: "Quality. Creativity. Excellence." }
+    ];
+    let i = 0;
+    const titleEl = document.querySelector(".hero .title");
+    const subEl = document.querySelector(".hero .sub-title");
+    if (!titleEl || !subEl) return;
+    setInterval(() => {
+      i = (i + 1) % texts.length;
+      titleEl.textContent = texts[i].title;
+      subEl.textContent = texts[i].subtitle;
+    }, 5000);
+  }
+
+  function initContactHeading() {
+    const texts = [
+      "Effortless branding, that's what we do",
+      "Creative designs to grow your business",
+      "Your trusted media partner in Nigeria"
+    ];
+    let i = 0;
+    const el = document.getElementById("contact-heading");
+    if (!el) return;
+    setInterval(() => {
+      i = (i + 1) % texts.length;
+      el.textContent = texts[i];
+    }, 5000);
+  }
+
+  // ── Scroll animations ─────────────────────────
+  function initScrollAnimations() {
+    const els = document.querySelectorAll(".page.active .animate");
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    els.forEach(el => observer.observe(el));
+  }
+
+  // ── API Helper ────────────────────────────────
+  async function postToBackend(url, data) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  }
+
+  function showStatus(elId, message, isSuccess) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.textContent = message;
+    el.className = "form-status " + (isSuccess ? "success" : "error");
+    setTimeout(() => { el.textContent = ""; el.className = "form-status"; }, 6000);
+  }
+
+  // ── Home Contact Form ─────────────────────────
+  function initHomeForm() {
+    const form = document.getElementById("home-contact-form");
+    if (!form) return;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector("button[type=submit]");
+      btn.textContent = "Sending...";
+      btn.disabled = true;
+      try {
+        const result = await postToBackend("/api/contact", {
+          firstName: document.getElementById("firstName").value.trim(),
+          lastName:  document.getElementById("lastName").value.trim(),
+          email:     document.getElementById("email").value.trim(),
+          phoneNo:   document.getElementById("phoneNo").value.trim(),
+          message:   document.getElementById("message").value.trim()
+        });
+        showStatus("home-form-status", result.message || result.error, result.success);
+        if (result.success) form.reset();
+      } catch (err) {
+        showStatus("home-form-status", "Server error. Please try again.", false);
+      }
+      btn.textContent = "Send Message";
+      btn.disabled = false;
+    });
+  }
+
+  // ── Contact Page Form ─────────────────────────
+  function initContactForm() {
+    const form = document.getElementById("contact-page-form");
+    if (!form) return;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector("button[type=submit]");
+      btn.textContent = "Sending...";
+      btn.disabled = true;
+      try {
+        const fullName = document.getElementById("contact-fullName").value.trim();
+        const [firstName, ...rest] = fullName.split(" ");
+        const result = await postToBackend("/api/contact", {
+          firstName: firstName || fullName,
+          lastName:  rest.join(" "),
+          email:     document.getElementById("contact-email").value.trim(),
+          phoneNo:   document.getElementById("contact-phoneNo").value.trim(),
+          message:   document.getElementById("contact-message").value.trim()
+        });
+        showStatus("contact-form-status", result.message || result.error, result.success);
+        if (result.success) form.reset();
+      } catch (err) {
+        showStatus("contact-form-status", "Server error. Please try again.", false);
+      }
+      btn.textContent = "Send Message";
+      btn.disabled = false;
+    });
+  }
+
+  // ── Newsletter ────────────────────────────────
+  function initNewsletter() {
+    const form = document.getElementById("newsletter-form");
+    if (!form) return;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("newsletterinput").value.trim();
+      const msgEl = document.getElementById("newsletterMessage");
+      try {
+        const result = await postToBackend("/api/newsletter", { email });
+        msgEl.textContent = result.message || result.error;
+        msgEl.style.color = result.success ? "#c6a437" : "red";
+        msgEl.style.display = "block";
+        if (result.success) form.reset();
+        setTimeout(() => { msgEl.style.display = "none"; }, 6000);
+      } catch (err) {
+        msgEl.textContent = "Error. Please try again.";
+        msgEl.style.color = "red";
+        msgEl.style.display = "block";
+      }
+    });
+  }
+</script>
+</body>
+</html>
