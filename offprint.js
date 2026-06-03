@@ -9,7 +9,7 @@ const newsletterroutes   = require("./routes/newsletterroutes");
 const adminroutes        = require("./routes/adminroutes");
 
 const app  = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // ── Connect to MongoDB ───────────────────────
 connectDB();
@@ -31,7 +31,7 @@ app.get("*", (req, res) => {
 });
 
 // ── Start server ─────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n✅ Offprint server running  → http://localhost:${PORT}`);
-  console.log(`🔐 Admin dashboard         → http://localhost:${PORT}/admin\n`);
+app.listen(port, () => {
+  console.log(`\n✅ Offprint server running  → http://localhost:${port}`);
+  console.log(`🔐 Admin dashboard         → http://localhost:${port}/admin\n`);
 });
