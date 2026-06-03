@@ -3,7 +3,7 @@ const express = require("express");
 const cors    = require("cors");
 const path    = require("path");
 
-const connectDB          = require("./config/db");
+const connectDB          = require("./Config/db");
 const contactroutes      = require("./routes/contactroutes");
 const newsletterroutes   = require("./routes/newsletterroutes");
 const adminroutes        = require("./routes/adminroutes");
