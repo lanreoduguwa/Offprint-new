@@ -1,5 +1,5 @@
 const Newsletter = require("../models/Newsletter");
-const transporter = require("../config/mailer");
+const transporter = require("../Config/mailer");
 
 //validate email format using regex
 const validateEmail = (email) => {

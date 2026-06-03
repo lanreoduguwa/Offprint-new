@@ -1,5 +1,5 @@
 const Contact     = require("../models/Contact");
-const transporter = require("../config/mailer");
+const transporter = require("../Config/mailer");
 
 // ── Helper: validate email ────────────────────
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
