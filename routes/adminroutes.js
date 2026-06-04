@@ -1,8 +1,8 @@
-const express = require("express");
-const router  = express.Router();
-
+const express    = require("express");
+const router     = express.Router();
+const { protect }        = require("../middleware/authMiddleware");
 const { adminDashboard } = require("../controllers/adminController");
 
-router.get("/", adminDashboard);  // GET /admin
+router.get("/", protect, adminDashboard);
 
 module.exports = router;
