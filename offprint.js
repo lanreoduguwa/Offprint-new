@@ -28,7 +28,6 @@ app.use(express.static(path.join(__dirname, "Public")));
 app.use("/api/contact",    contactroutes);
 app.use("/api/newsletter", newsletterroutes);
 app.use("/api/portfolio",  portfolioroutes);
-app.use("/auth",           authroutes);
 app.use("/admin",          authroutes);     // login/logout/setup
 app.use("/admin",          adminroutes);    // dashboard (protected)
 // ── Catch-all: serve frontend ────────────────

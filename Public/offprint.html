@@ -36,7 +36,6 @@
       min-height: 70px;
       box-shadow: 0 3px 30px rgba(0,0,0,0.7);
     }
-    /* dark overlay so brand always reads clearly */
     .nav::before {
       content: '';
       position: absolute;
@@ -90,7 +89,6 @@
       padding-left: 3px;
       display: block;
     }
-    /* gold underline accent */
     .logo-accent {
       display: block;
       width: 100%;
@@ -163,6 +161,86 @@
     }
     .btn:hover { background: var(--dark-green); color: gold; }
 
+    /* ── LATEST WORK SECTION ── */
+    .latest-work {
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, #fff 0%, #f9f5e8 100%);
+    }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 10px;
+    }
+    .section-header h2 {
+      font-size: 2.2rem; font-weight: 700; color: var(--dark-green);
+      position: relative; display: inline-block;
+    }
+    .section-header h2::after {
+      content: ''; display: block; width: 60px; height: 3px;
+      background: var(--gold); margin: 12px auto 0; border-radius: 2px;
+    }
+    .section-header p { color: #666; margin-top: 12px; font-size: 15px; }
+
+    /* Category filter tabs */
+    .work-filters {
+      display: flex; gap: 10px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 8px 20px; border: 2px solid var(--gold);
+      background: transparent; color: var(--dark-green);
+      border-radius: 30px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: var(--transition); font-family: inherit;
+    }
+    .filter-btn:hover, .filter-btn.active { background: var(--gold); color: var(--dark-green); }
+
+    /* Work grid */
+    .work-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1200px; margin: 0 auto;
+    }
+    .work-card {
+      border-radius: 12px; overflow: hidden; background: #fff;
+      border: 1px solid rgba(198,164,55,0.25);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      opacity: 0; transform: translateY(24px);
+      animation: cardReveal 0.5s ease forwards;
+    }
+    .work-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.13); }
+    @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
+    .work-card-img { position: relative; overflow: hidden; height: 240px; }
+    .work-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .work-card:hover .work-card-img img { transform: scale(1.06); }
+    .work-card-badge {
+      position: absolute; top: 12px; left: 12px; background: var(--gold);
+      color: var(--dark-green); font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .work-card-featured {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--dark-green); color: var(--gold);
+      font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;
+    }
+    .work-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+    .work-card-body h3 { font-size: 16px; font-weight: 700; color: var(--dark-green); margin-bottom: 6px; }
+    .work-card-body p  { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 14px; }
+    .work-card-body .btn { font-size: 13px; padding: 8px 18px; }
+
+    /* Empty / loading states */
+    .work-loading, .work-empty { grid-column: 1 / -1; text-align: center; padding: 3rem; color: #999; }
+    .work-loading-spinner {
+      width: 36px; height: 36px; border: 3px solid rgba(198,164,55,0.3);
+      border-top-color: var(--gold); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 1024px) { .work-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px)  { .work-grid { grid-template-columns: 1fr; } .section-header h2 { font-size: 1.6rem; } }
+
     /* ── HOME CONTACT CTA ── */
     .container-contact {
       width: 80%; max-width: 900px; background: #555;
@@ -228,9 +306,7 @@
     .about-content img { width: 350px; border-radius: 10px; object-fit: cover; }
     .about-content strong { font-size: 15px; line-height: 1.8; color: #333; display: block; }
     .grid-container { padding: 2rem; max-width: 1100px; margin: 0 auto; }
-    .grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-    }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .box {
       background: var(--dark-green); color: white;
       padding: 2rem; border-radius: 10px; border-left: 4px solid var(--gold);
@@ -283,7 +359,7 @@
       100% { transform: perspective(1000px) rotateY(360deg); }
     }
 
-    /* ── CONTACT INFO CARDS (shared) ── */
+    /* ── CONTACT INFO CARDS ── */
     .Contact-info {
       display: flex; justify-content: space-around; align-items: center;
       padding: 50px 20px; background-image: url(tosin.jpeg);
@@ -302,9 +378,7 @@
       background: black; color: gold;
       text-align: center; padding: 20px; font-size: 1rem;
     }
-    .footer {
-      background: black; padding: 20px; text-align: center;
-    }
+    .footer { background: black; padding: 20px; text-align: center; }
     .footer h2 { font-size: 18px; color: gold; margin-bottom: 5px; }
     .footer p { color: gold; font-size: 12px; }
     .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 10px; }
@@ -352,9 +426,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════ -->
-<!--  NAV                                       -->
-<!-- ══════════════════════════════════════════ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="logo">
     <a href="#home" onclick="showPage('home')">
@@ -380,9 +452,7 @@
   </ul>
 </nav>
 
-<!-- ══════════════════════════════════════════ -->
-<!--  PAGE: HOME                                -->
-<!-- ══════════════════════════════════════════ -->
+<!-- PAGE: HOME -->
 <div id="page-home" class="page active">
 
   <!-- Hero -->
@@ -394,9 +464,9 @@
     </div>
   </section>
 
-  <!-- Portfolio -->
+  <!-- Static Services Portfolio -->
   <section id="container">
-    <h2 class="feature-title">Portfolio</h2>
+    <h2 class="feature-title">Our Services</h2>
     <div class="feature-grid">
       <div class="feature-card">
         <img src="fountain.jpeg" alt="Branding">
@@ -437,6 +507,37 @@
           <p>Let us help you with your branded gift items and custom packaging.</p>
           <button class="btn" onclick="showPage('contact')">Get Started</button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  LATEST WORK  (dynamic from API)        -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="latest-work" id="latest-work-section">
+    <div class="section-header">
+      <span class="eyebrow">Fresh off the press</span>
+      <h2>Latest Work</h2>
+      <p>Real projects, real clients — see what we've been creating</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="work-filters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="Branding">Branding</button>
+      <button class="filter-btn" data-cat="Printing">Printing</button>
+      <button class="filter-btn" data-cat="Packaging">Packaging</button>
+      <button class="filter-btn" data-cat="Book Publishing">Book Publishing</button>
+      <button class="filter-btn" data-cat="Gift Items">Gift Items</button>
+      <button class="filter-btn" data-cat="Estate">Estate</button>
+      <button class="filter-btn" data-cat="Others">Others</button>
+    </div>
+
+    <!-- Cards injected here -->
+    <div class="work-grid" id="work-grid">
+      <div class="work-loading">
+        <div class="work-loading-spinner"></div>
+        <p>Loading latest work…</p>
       </div>
     </div>
   </section>
@@ -526,9 +627,7 @@
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!--  PAGE: ABOUT                               -->
-<!-- ══════════════════════════════════════════ -->
+<!-- PAGE: ABOUT -->
 <div id="page-about" class="page">
   <div class="about-us">
     <h2>Get To Know Offprint Global Media Concepts</h2>
@@ -570,9 +669,7 @@
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!--  PAGE: CONTACT                             -->
-<!-- ══════════════════════════════════════════ -->
+<!-- PAGE: CONTACT -->
 <div id="page-contact" class="page">
   <div class="contact-hero">
     <h2 id="contact-heading">Effortless branding, that's what we do</h2>
@@ -621,9 +718,7 @@
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!--  PAGE: GALLERY                             -->
-<!-- ══════════════════════════════════════════ -->
+<!-- PAGE: GALLERY -->
 <div id="page-gallery" class="page">
   <div class="gallery-title">
     <h2>Our Work Gallery</h2>
@@ -657,28 +752,19 @@
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!--  JAVASCRIPT                                -->
-<!-- ══════════════════════════════════════════ -->
+<!-- JAVASCRIPT -->
 <script>
   // ── Page Router ──────────────────────────────
   function showPage(pageName) {
-    // Hide all pages
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    // Remove active from all nav links
     document.querySelectorAll("nav ul li a").forEach(a => a.classList.remove("active"));
-    // Show target page
     document.getElementById("page-" + pageName).classList.add("active");
-    // Mark nav link active
     const navLink = document.getElementById("nav-" + pageName);
     if (navLink) navLink.classList.add("active");
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: "smooth" });
-    // Re-init scroll animations for new page
     initScrollAnimations();
   }
 
-  // Handle browser back/forward and hash links
   window.addEventListener("hashchange", () => {
     const hash = window.location.hash.replace("#", "") || "home";
     const valid = ["home", "about", "contact", "gallery"];
@@ -697,6 +783,8 @@
     initContactForm();
     initNewsletter();
     initContactHeading();
+    initLatestWork();
+    initWorkFilters();
   });
 
   // ── Hero text rotation ────────────────────────
@@ -708,12 +796,12 @@
     ];
     let i = 0;
     const titleEl = document.querySelector(".hero .title");
-    const subEl = document.querySelector(".hero .sub-title");
+    const subEl   = document.querySelector(".hero .sub-title");
     if (!titleEl || !subEl) return;
     setInterval(() => {
       i = (i + 1) % texts.length;
       titleEl.textContent = texts[i].title;
-      subEl.textContent = texts[i].subtitle;
+      subEl.textContent   = texts[i].subtitle;
     }, 5000);
   }
 
@@ -830,16 +918,72 @@
       const msgEl = document.getElementById("newsletterMessage");
       try {
         const result = await postToBackend("/api/newsletter", { email });
-        msgEl.textContent = result.message || result.error;
-        msgEl.style.color = result.success ? "#c6a437" : "red";
+        msgEl.textContent   = result.message || result.error;
+        msgEl.style.color   = result.success ? "#c6a437" : "red";
         msgEl.style.display = "block";
         if (result.success) form.reset();
         setTimeout(() => { msgEl.style.display = "none"; }, 6000);
       } catch (err) {
-        msgEl.textContent = "Error. Please try again.";
-        msgEl.style.color = "red";
+        msgEl.textContent   = "Error. Please try again.";
+        msgEl.style.color   = "red";
         msgEl.style.display = "block";
       }
+    });
+  }
+
+  // ════════════════════════════════════════════
+  //  LATEST WORK — fetches from /api/portfolio
+  // ════════════════════════════════════════════
+  let _allWork = [];
+
+  async function initLatestWork() {
+    const grid = document.getElementById("work-grid");
+    if (!grid) return;
+    try {
+      const res  = await fetch("/api/portfolio");
+      const data = await res.json();
+      if (!data.success || !data.data.length) {
+        grid.innerHTML = '<div class="work-empty"><p>No work items yet — check back soon!</p></div>';
+        return;
+      }
+      _allWork = data.data;
+      renderWork("all");
+    } catch (e) {
+      grid.innerHTML = '<div class="work-empty"><p>Could not load work items.</p></div>';
+    }
+  }
+
+  function renderWork(cat) {
+    const grid = document.getElementById("work-grid");
+    if (!grid) return;
+    const items = cat === "all" ? _allWork : _allWork.filter(w => w.category === cat);
+    if (!items.length) {
+      grid.innerHTML = '<div class="work-empty"><p>No items in this category yet.</p></div>';
+      return;
+    }
+    grid.innerHTML = items.map((w, i) => `
+      <div class="work-card" style="animation-delay:${i * 0.08}s">
+        <div class="work-card-img">
+          <img src="${w.imageUrl}" alt="${w.title}" loading="lazy">
+          <span class="work-card-badge">${w.category}</span>
+          ${w.featured ? '<span class="work-card-featured">⭐ Featured</span>' : ''}
+        </div>
+        <div class="work-card-body">
+          <h3>${w.title}</h3>
+          ${w.description ? `<p>${w.description}</p>` : ''}
+          <button class="btn" onclick="showPage('contact')">Get Started</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function initWorkFilters() {
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderWork(btn.dataset.cat);
+      });
     });
   }
 </script>
