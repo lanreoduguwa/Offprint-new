@@ -32,12 +32,12 @@ app.use("/admin",          authroutes);     // login/logout/setup
 app.use("/admin",          adminroutes);    // dashboard (protected)
 // ── Catch-all: serve frontend ────────────────
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "Public", "offprint.html"));
+  res.sendFile(path.join(__dirname, "Public", "offprintz.html"));
 });
 
 // ── Start server ─────────────────────────────
 app.listen(port, () => {
-  console.log(`\n✅ Offprint server running  → http://localhost:${port}`);
+  console.log(`\n✅ Offprintz server running  → http://localhost:${port}`);
   console.log(`🔐 Admin dashboard         → http://localhost:${port}/admin\n`);
    console.log(`📋 First time? Create admin → POST http://localhost:${port}/admin/setup\n`);
 });

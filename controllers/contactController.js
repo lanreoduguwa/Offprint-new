@@ -26,9 +26,9 @@ const sendOwnerEmail = async (data) => {
 const sendCustomerReply = async (data) => {
   const { firstName, email, message } = data;
   await transporter.sendMail({
-    from:    `"Offprint Global Media" <${process.env.EMAIL_USER}>`,
+    from:    `"Offprintz Global Media" <${process.env.EMAIL_USER}>`,
     to:      email,
-    subject: "We received your message – Offprint Global Media",
+    subject: "We received your message – Offprintz Global Media",
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:auto;">
         <h2 style="color:#c6a437;">Thank you, ${firstName}! 🎉</h2>
@@ -36,7 +36,7 @@ const sendCustomerReply = async (data) => {
         <blockquote style="border-left:4px solid #c6a437;padding-left:12px;color:#555;">${message}</blockquote>
         <hr style="border-color:#c6a437;">
         <p style="color:#888;font-size:13px;">
-          Offprint Global Media Concepts<br>
+          Offprintz Global Media Concepts<br>
           6/11, Awe Crescent, Onipanu, Shomolu, Lagos<br>
           +234708455540 | ${process.env.EMAIL_USER}
         </p>

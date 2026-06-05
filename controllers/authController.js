@@ -10,7 +10,7 @@ const generateToken = (id) =>
 // ════════════════════════════════════════════
 const showLogin = (req, res) => {
   res.send(`<!DOCTYPE html>
-  <html><head><title>Offprint Admin Login</title>
+  <html><head><title>Offprintz Admin Login</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:sans-serif;background:#0c3b2e;display:flex;justify-content:center;align-items:center;min-height:100vh}
@@ -26,7 +26,7 @@ const showLogin = (req, res) => {
   </style></head>
   <body><div class="card">
     <h1>🖨️ Admin Login</h1>
-    <p>Offprint Global Media Concepts</p>
+    <p>Offprintz Global Media Concepts</p>
     ${req.query.error ? `<div class="error">${req.query.error}</div>` : ""}
     <form method="POST" action="/admin/login">
       <label>Username</label>
@@ -98,7 +98,7 @@ const adminDashboard = (req, res) => {
   res.send(`<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Offprint Admin Dashboard</title>
+<title>Offprintz Admin Dashboard</title>
 <style>
   :root{--gold:#c6a437;--dg:#0c3b2e;--red:#e03131;--green:#2f9e44;--radius:10px}
   *{box-sizing:border-box;margin:0;padding:0}

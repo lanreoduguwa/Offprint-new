@@ -10,16 +10,16 @@ const validateEmail = (email) => {
 // welcome email
 const sendWelcomeEmail = async (email) => {
   await transporter.sendMail({
-    from:    `"Offprint Global Media" <${process.env.EMAIL_USER}>`,
+    from:    `"Offprintz Global Media" <${process.env.EMAIL_USER}>`,
     to:      email,
-    subject: "Welcome to the Offprint Family! 🌟",
+    subject: "Welcome to the Offprintz Family! 🌟",
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:auto;background:#0c3b2e;padding:30px;border-radius:10px;">
-        <h2 style="color:#c6a437;text-align:center;">Welcome to Offprint Global Media!</h2>
+        <h2 style="color:#c6a437;text-align:center;">Welcome to Offprintz Global Media!</h2>
         <p style="color:#fff;">You are now part of our family. You'll be the first to hear about our latest offers and projects.</p>
         <p style="color:#c6a437;font-weight:bold;">Stay creative. Stay branded. 🚀</p>
         <hr style="border-color:#c6a437;">
-        <p style="color:#888;font-size:12px;text-align:center;">Offprint Global Media · Lagos, Nigeria</p>
+        <p style="color:#888;font-size:12px;text-align:center;">Offprintz Global Media · Lagos, Nigeria</p>
       </div>
     `,
   });
